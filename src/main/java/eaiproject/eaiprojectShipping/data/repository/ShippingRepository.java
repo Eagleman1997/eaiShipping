@@ -10,7 +10,7 @@ import eaiproject.eaiprojectShipping.data.domain.Shipping;
 
 public interface ShippingRepository extends JpaRepository<Shipping, Integer>{
 
-	public List<Shipping> findShippingsByTrackingId(@Param("TrackingId") String TrackingId);
-	public List<Shipping> findShippingsByOrderId(@Param("OrderId") String OrderId);
+	public List<Shipping> findShippingsByTrackingId(@Param("transaction_id") Integer TrackingId);
+	public List<Shipping> findShippingsByOrderId(@Param("OrderId") Integer OrderId);
 	
 }
