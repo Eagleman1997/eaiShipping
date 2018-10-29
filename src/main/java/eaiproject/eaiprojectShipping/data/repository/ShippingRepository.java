@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import eaiproject.eaiprojectShipping.data.domain.Shipping;
 
 
-
 public interface ShippingRepository extends JpaRepository<Shipping, Integer>{
 
 	public List<Shipping> findShippingsByTrackingId(@Param("transaction_id") Integer TrackingId);
