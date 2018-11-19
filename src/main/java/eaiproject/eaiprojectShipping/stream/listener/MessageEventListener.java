@@ -17,6 +17,8 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import eaiproject.eaiprojectShipping.stream.sender.MessageEventSender;
+
 import eaiproject.eaiprojectShipping.business.service.ShippingService;
 import eaiproject.eaiprojectShipping.data.domain.Shipping;
 import eaiproject.eaiprojectShipping.stream.message.EventMessage;
@@ -29,6 +31,9 @@ public class MessageEventListener {
 
     @Autowired
     private ShippingService shippingService;
+    
+    @Autowired
+    private MessageEventSender messageEventSender;
 
     private static Logger logger = LoggerFactory.getLogger(MessageEventListener.class);
 
@@ -50,6 +55,7 @@ public class MessageEventListener {
         orderMessage.setTrackingId(shipping.getTracking_id().toString());
         orderMessage.setStatus("GoodsShipped");
         logger.info(orderMessage.toString());
+        messageEventSender.send(new EventMessage<>("UpdateLoyalityPoints", orderMessage));
     }
 
 
