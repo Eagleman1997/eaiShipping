@@ -5,32 +5,59 @@
 
 package eaiproject.eaiprojectShipping.stream.message;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import eaiproject.eaiprojectShipping.data.domain.Shampoo;
+
 
 public class OrderMessage {
     private String orderId;
     private String customerId;
     private Double amount;
     private Integer numberOfItems;
-    private List<OrderItem> items;
+    private List<Shampoo> shampoos;
     private String transactionId;
     private String trackingId;
     private String packingSlipId;
     private String status;
+	private String first_name;
+	private String last_name;
+	private String shipping_address_name;
+	private String shipping_address_street;
+	private String shipping_address_location;
+	private String loyalityPoints;
+	private String parcel_service;
+	private Date creation_date;
 
     public OrderMessage() {
     }
 
-    public OrderMessage(String orderId, String customerId, Double amount, Integer numberOfItems, List<OrderItem> items, String transactionId, String trackingId, String packingSlipId, String status) {
+    public OrderMessage(String orderId, String customerId, Double amount, Integer numberOfItems, List<Shampoo> shampoos, String first_name, String last_name, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service, String status, String string) {
         this.orderId = orderId;
         this.customerId = customerId;
+        if (amount == 0.00) {
+    		double price = 0.00;
+    		for (Shampoo shampoo : shampoos) {
+    			price += shampoo.getPrice();
+    		}
+    		this.amount = price;
+        } else {
+        	this.amount = amount;
+        }
         this.amount = amount;
         this.numberOfItems = numberOfItems;
-        this.items = items;
-        this.transactionId = transactionId;
-        this.trackingId = trackingId;
-        this.packingSlipId = packingSlipId;
+        this.shampoos = shampoos;
+    	this.first_name = first_name;
+    	this.last_name = last_name;
+    	this.shipping_address_name = shipping_address_name;
+    	this.shipping_address_street = shipping_address_street;
+    	this.shipping_address_location = shipping_address_location;
+    	this.parcel_service = parcel_service;
         this.status = status;
+        this.creation_date = new Timestamp(System.currentTimeMillis());
     }
 
     public String getOrderId() {
@@ -65,12 +92,12 @@ public class OrderMessage {
         this.numberOfItems = numberOfItems;
     }
 
-    public List<OrderItem> getItems() {
-        return items;
+    public List<Shampoo> getItems() {
+        return shampoos;
     }
 
-    public void setItems(List<OrderItem> items) {
-        this.items = items;
+    public void setItems(List<Shampoo> shampoos) {
+        this.shampoos = shampoos;
     }
 
     public String getTransactionId() {
@@ -104,6 +131,46 @@ public class OrderMessage {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+	public String getLoyalityPoints() {
+		return loyalityPoints;
+	}
+
+	public void setLoyalityPoints(String loyalityPoints) {
+		this.loyalityPoints = loyalityPoints;
+	}
+	
+	public String getParcel_service() {
+		return parcel_service;
+	}
+
+	public void setParcel_service(String parcel_service) {
+		this.parcel_service = parcel_service;
+	}
+	
+	public String getShipping_address_name() {
+		return shipping_address_name;
+	}
+
+	public void setShipping_address_name(String shipping_address_name) {
+		this.shipping_address_name = shipping_address_name;
+	}
+
+	public String getShipping_address_street() {
+		return shipping_address_street;
+	}
+
+	public void setShipping_address_street(String shipping_address_street) {
+		this.shipping_address_street = shipping_address_street;
+	}
+
+	public String getShipping_address_location() {
+		return shipping_address_location;
+	}
+
+	public void setShipping_address_location(String shipping_address_location) {
+		this.shipping_address_location = shipping_address_location;
+	}
 
     @Override
     public String toString() {
@@ -112,11 +179,17 @@ public class OrderMessage {
                 ", customerId='" + customerId + '\'' +
                 ", amount=" + amount +
                 ", numberOfItems=" + numberOfItems +
-                ", items=" + items.toString() +
+                ", items=" + shampoos.toString() +
                 ", transactionId='" + transactionId + '\'' +
                 ", trackingId='" + trackingId + '\'' +
                 ", packingSlipId='" + packingSlipId + '\'' +
                 ", status='" + status + '\'' +
+                ", first_name=" + first_name +
+                ", last_name=" + last_name +
+                ", shipping_address_name='" + shipping_address_name + '\'' +
+                ", shipping_address_street='" + shipping_address_street + '\'' +
+                ", shipping_address_location='" + shipping_address_location + '\'' +
+                ", parcel_service='" + parcel_service + '\'' +
                 '}';
     }
 
@@ -167,4 +240,5 @@ public class OrderMessage {
                     '}';
         }
     }
+
 }

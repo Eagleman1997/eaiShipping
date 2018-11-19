@@ -15,20 +15,20 @@ public class ShippingService {
 	
     private Logger logger = LoggerFactory.getLogger(ShippingService.class);
 
-    public Shipping shipGoods(Integer orderId, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) throws Exception {
-        logger.info("shipGoods() with orderId " + orderId + " and shipping_adress " + shipping_address_street + " " + shipping_address_location + " called and hand over the parcel to the delivery service " + parcel_service);
+    public Shipping shipGoods(Integer tracking_id, Integer orderId, Integer customer_id , Integer packingSlip_id, String parcel_service, String shipping_address_name, String shipping_address_street, String shipping_address_location) throws Exception {
+        logger.info("shipGoods() with orderId " + orderId + " and customer_id " + customer_id + " and packingSlip_id " + packingSlip_id + " called and hand over the parcel to the delivery service " + parcel_service + "to adress " + shipping_address_name + " " + shipping_address_street + " " + shipping_address_location);
         for(long seconds = 5; seconds > 0; seconds--) {
             logger.info("Delivery service ready in " + seconds + " seconds");
             Thread.sleep(1000);
         }
         // ...
-        Shipping shipping = new Shipping(orderId, shipping_address_name, shipping_address_street, shipping_address_location, parcel_service);
+        Shipping shipping = new Shipping(tracking_id, orderId, customer_id, packingSlip_id, parcel_service, shipping_address_name, shipping_address_street, shipping_address_location);
         logger.info("Packet transferred to delivery service and tracking number "+ shipping.getOrder_id() + " received");
         return shipping;
     }
 	
-	public Shipping createShipping(Integer orderId, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
-		Shipping shipping = new Shipping(orderId, shipping_address_name, shipping_address_street, shipping_address_location, parcel_service);
+	public Shipping createShipping(Integer tracking_id, Integer orderId, Integer customer_id, Integer packingSlip_id, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
+		Shipping shipping = new Shipping(tracking_id, orderId, customer_id, packingSlip_id, shipping_address_name, shipping_address_street, shipping_address_location, parcel_service);
 		return shippingRepository.save(shipping);
 	}
 	
@@ -36,9 +36,9 @@ public class ShippingService {
 		return shippingRepository.findById(Integer.parseInt(orderId)).orElse(null);
 	}
 	
-	public Shipping updateShipping(String orderId, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
-		Shipping shipping = new Shipping(Integer.parseInt(orderId), shipping_address_name, shipping_address_street, shipping_address_location, parcel_service);
-		shipping.setOrder_id(Integer.parseInt(orderId));
+	public Shipping updateShipping(Integer tracking_id, Integer orderId, Integer customer_id, Integer packingSlip_id, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
+		Shipping shipping = new Shipping(tracking_id, orderId, customer_id, packingSlip_id, shipping_address_name, shipping_address_street, shipping_address_location, parcel_service);
+		shipping.setOrder_id(orderId);
 		return shippingRepository.save(shipping);
 	}
 

@@ -5,6 +5,8 @@
 
 package eaiproject.eaiprojectShipping.stream.listener;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +37,16 @@ public class MessageEventListener {
     @Transactional
     public void payment(@Payload EventMessage<OrderMessage> eventMessage) throws Exception {
         OrderMessage orderMessage = eventMessage.getPayload();
-        logger.info("Payload received: "+orderMessage.toString());
-        Shipping shipping = shippingService.shipGoods(Long.valueOf(orderMessage.getCustomerId()), orderMessage.getOrderId(), orderMessage.getPackingSlipId());
+        logger.info("Payload received: "+ orderMessage.toString());
+        Shipping shipping = shippingService.shipGoods(
+        		Integer.parseInt(UUID.randomUUID().toString()), 
+        		Integer.parseInt(orderMessage.getOrderId()), 
+        		Integer.parseInt(orderMessage.getCustomerId()), 
+        		Integer.parseInt(orderMessage.getPackingSlipId()), 
+        		orderMessage.getParcel_service(), 
+        		orderMessage.getShipping_address_name(),
+        		orderMessage.getShipping_address_street(),
+        		orderMessage.getShipping_address_location());
         orderMessage.setTrackingId(shipping.getTracking_id().toString());
         orderMessage.setStatus("GoodsShipped");
         logger.info(orderMessage.toString());
