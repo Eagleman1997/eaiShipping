@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import eaiproject.eaiprojectShipping.data.domain.Shipping;
 import eaiproject.eaiprojectShipping.data.repository.ShippingRepository;
 
+@Service
 public class ShippingService {
 	
 	@Autowired
@@ -23,7 +24,7 @@ public class ShippingService {
         }
         // ...
         Shipping shipping = new Shipping(tracking_id, orderId, customer_id, packingSlip_id, parcel_service, shipping_address_name, shipping_address_street, shipping_address_location);
-        logger.info("Packet transferred to delivery service and tracking number "+ shipping.getOrder_id() + " received");
+        logger.info("Packet transferred to delivery service and tracking number "+ shipping.getOrderId() + " received");
         return shipping;
     }
 	
@@ -38,7 +39,7 @@ public class ShippingService {
 	
 	public Shipping updateShipping(Integer tracking_id, Integer orderId, Integer customer_id, Integer packingSlip_id, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
 		Shipping shipping = new Shipping(tracking_id, orderId, customer_id, packingSlip_id, shipping_address_name, shipping_address_street, shipping_address_location, parcel_service);
-		shipping.setOrder_id(orderId);
+		shipping.setOrderId(orderId);
 		return shippingRepository.save(shipping);
 	}
 

@@ -6,10 +6,10 @@ import javax.persistence.*;
 public class Shipping {
 	
 	@Id @GeneratedValue
-	private Integer tracking_id;
-	private Integer order_id;
-	private Integer customer_id;
-	private Integer packingSlip_id;
+	private Integer trackingId;
+	private Integer orderId;
+	private Integer customerId;
+	private Integer packingSlipId;
 	private String shipping_address_name;
 	private String shipping_address_street;
 	private String shipping_address_location;
@@ -19,31 +19,31 @@ public class Shipping {
 		super();
 	}
 	
-	public Shipping(Integer tracking_id, Integer order_id, Integer customer_id, Integer packingSlip_id, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
-		this.tracking_id = tracking_id;
-		this.order_id = order_id;
-		this.customer_id = customer_id;
-		this.packingSlip_id = packingSlip_id;
+	public Shipping(Integer trackingId, Integer orderId, Integer customerId, Integer packingSlipId, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
+		this.trackingId = trackingId;
+		this.orderId = orderId;
+		this.customerId = customerId;
+		this.packingSlipId = packingSlipId;
 		this.parcel_service = parcel_service;
 		this.shipping_address_name = shipping_address_name;
 		this.shipping_address_street = shipping_address_street;
 		this.shipping_address_location = shipping_address_location;
     }
 
-	public Integer getTracking_id() {
-		return tracking_id;
+	public Integer getTrackingId() {
+		return trackingId;
 	}
 
-	public void setTracking_id(Integer tracking_id) {
-		this.tracking_id = tracking_id;
+	public void setTrackingId(Integer trackingId) {
+		this.trackingId = trackingId;
 	}
 
-	public Integer getOrder_id() {
-		return order_id;
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public void setOrder_id(Integer order_id) {
-		this.order_id = order_id;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
 	public String getShipping_address_name() {

@@ -52,7 +52,7 @@ public class MessageEventListener {
         		orderMessage.getShipping_address_name(),
         		orderMessage.getShipping_address_street(),
         		orderMessage.getShipping_address_location());
-        orderMessage.setTrackingId(shipping.getTracking_id().toString());
+        orderMessage.setTrackingId(shipping.getTrackingId().toString());
         orderMessage.setStatus("GoodsShipped");
         logger.info(orderMessage.toString());
         messageEventSender.send(new EventMessage<>("UpdateLoyalityPoints", orderMessage));

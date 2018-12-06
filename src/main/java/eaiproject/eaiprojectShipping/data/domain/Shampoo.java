@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Shampoo {
 	
 	@Id
-	private Integer shampoo_id;
+	private Integer shampooId;
 	private String name;
 	private String brand;
 	private String type;
@@ -16,8 +16,8 @@ public class Shampoo {
 		super();
 	}
 
-	public Shampoo(Integer shampoo_id, String name, String brand, String type, Double price) {
-		this.shampoo_id = shampoo_id;
+	public Shampoo(Integer shampooId, String name, String brand, String type, Double price) {
+		this.shampooId = shampooId;
 		this.name = name;
 		this.brand = brand;
 		this.type = type;
@@ -25,11 +25,11 @@ public class Shampoo {
 	}
 	
 	public Integer getShampoo_id() {
-		return shampoo_id;
+		return shampooId;
 	}
 
-	public void setShampoo_id(Integer shampoo_id) {
-		this.shampoo_id = shampoo_id;
+	public void setShampoo_id(Integer shampooId) {
+		this.shampooId = shampooId;
 	}
 
 	public String getName() {
