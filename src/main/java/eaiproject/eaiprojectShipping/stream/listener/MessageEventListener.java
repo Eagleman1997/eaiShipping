@@ -37,6 +37,14 @@ public class MessageEventListener {
 
     private static Logger logger = LoggerFactory.getLogger(MessageEventListener.class);
 
+    /**
+     * Search for the Call ShipGoods 
+     * Create a TrackingId for the customer
+     * Send the goods     * 
+     * @param eventMessage
+     * @throws Exception
+     * @author Lukas Weber
+     */
     @StreamListener(target = Sink.INPUT,
             condition="(headers['type']?:'')=='ShipGoods'")
     @Transactional
@@ -44,14 +52,14 @@ public class MessageEventListener {
         OrderMessage orderMessage = eventMessage.getPayload();
         logger.info("Payload received: "+ orderMessage.toString());
         Shipping shipping = shippingService.shipGoods(
-        		Integer.parseInt(UUID.randomUUID().toString()), 
-        		Integer.parseInt(orderMessage.getOrderId()), 
-        		Integer.parseInt(orderMessage.getCustomerId()), 
-        		Integer.parseInt(orderMessage.getPackingSlipId()), 
-        		orderMessage.getParcel_service(), 
-        		orderMessage.getShipping_address_name(),
-        		orderMessage.getShipping_address_street(),
-        		orderMessage.getShipping_address_location());
+        		Integer.parseInt(UUID.randomUUID().toString()),  // trackId -> new in this Service
+        		Integer.parseInt(orderMessage.getOrderId()),  // orderId -> given from eaieShop
+        		Integer.parseInt(orderMessage.getCustomerId()),  // customerId -> given from eaieShop
+        		Integer.parseInt(orderMessage.getPackingSlipId()), //packingSlipId -> given from eaiInvetory
+        		orderMessage.getParcel_service(), // ParacelService -> given from eaieShop
+        		orderMessage.getShipping_address_name(), // ShippingAdress the Name from the customer -> given from eaieShop
+        		orderMessage.getShipping_address_street(), // ShippingAdress the Street from the customer -> given from eaieShop
+        		orderMessage.getShipping_address_location()); // ShippingAdress the PLZ and destination from the customer -> given from eaieShop
         orderMessage.setTrackingId(shipping.getTrackingId().toString());
         orderMessage.setStatus("GoodsShipped");
         logger.info(orderMessage.toString());

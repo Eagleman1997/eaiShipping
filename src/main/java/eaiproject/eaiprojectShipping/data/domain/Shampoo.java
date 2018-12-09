@@ -16,6 +16,15 @@ public class Shampoo {
 		super();
 	}
 
+	/**
+	 * Create a new Shampoo if its needed
+	 * @param shampooId
+	 * @param name
+	 * @param brand
+	 * @param type
+	 * @param price
+	 * @author Lukas Weber
+	 */
 	public Shampoo(Integer shampooId, String name, String brand, String type, Double price) {
 		this.shampooId = shampooId;
 		this.name = name;

@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import eaiproject.eaiprojectShipping.data.domain.Shipping;
 
-
+/**
+ * Find Shipping by the TrackingId or by the orderId
+ * @author Lukas Weber
+ */
 public interface ShippingRepository extends JpaRepository<Shipping, Integer>{
 
-	public List<Shipping> findShippingsByTrackingId(@Param("tracking_id") Integer TrackingId);
-	public List<Shipping> findShippingsByOrderId(@Param("order_id") Integer OrderId);
+	public List<Shipping> findShippingsByTrackingId(@Param("trackingId") Integer TrackingId);
+	public List<Shipping> findShippingsByOrderId(@Param("orderId") Integer OrderId);
 	
 }

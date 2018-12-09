@@ -19,7 +19,19 @@ public class Shipping {
 		super();
 	}
 	
-	public Shipping(Integer trackingId, Integer orderId, Integer customerId, Integer packingSlipId, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service) {
+	/**
+	 * Create new Shipping 
+	 * @param trackingId
+	 * @param orderId
+	 * @param customerId
+	 * @param packingSlipId
+	 * @param parcel_service
+	 * @param shipping_address_name
+	 * @param shipping_address_street
+	 * @param shipping_address_location
+	 * @author Lukas Weber
+	 */
+	public Shipping(Integer trackingId, Integer orderId, Integer customerId, Integer packingSlipId, String parcel_service, String shipping_address_name, String shipping_address_street, String shipping_address_location) {
 		this.trackingId = trackingId;
 		this.orderId = orderId;
 		this.customerId = customerId;
