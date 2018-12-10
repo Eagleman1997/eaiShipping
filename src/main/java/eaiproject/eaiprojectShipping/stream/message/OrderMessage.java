@@ -23,14 +23,14 @@ public class OrderMessage {
     private String trackingId;
     private String packingSlipId;
     private String status;
-	private String first_name;
-	private String last_name;
-	private String shipping_address_name;
-	private String shipping_address_street;
-	private String shipping_address_location;
+	private String firstName;
+	private String lastName;
+	private String shippingAddressName;
+	private String shippingAddressStreet;
+	private String shippingAddressLocation;
 	private String loyalityPoints;
-	private String parcel_service;
-	private Date creation_date;
+	private String parcelService;
+	private Date creationDate;
 
     public OrderMessage() {
     }
@@ -54,7 +54,7 @@ public class OrderMessage {
      * @param string
      * @author Lukas Weber
      */
-    public OrderMessage(String orderId, String customerId, Double amount, Integer numberOfItems, List<Shampoo> shampoos, String first_name, String last_name, String shipping_address_name, String shipping_address_street, String shipping_address_location, String parcel_service, String status, String string) {
+    public OrderMessage(String orderId, String customerId, Double amount, Integer numberOfItems, List<Shampoo> shampoos, String firstName, String lastName, String shippingAddressName, String shippingAddressStreet, String shippingAddressLocation, String parcelService, String status) {
         this.orderId = orderId;
         this.customerId = customerId;
         if (amount == 0.00) {
@@ -66,17 +66,16 @@ public class OrderMessage {
         } else {
         	this.amount = amount;
         }
-        this.amount = amount;
         this.numberOfItems = numberOfItems;
         this.shampoos = shampoos;
-    	this.first_name = first_name;
-    	this.last_name = last_name;
-    	this.shipping_address_name = shipping_address_name;
-    	this.shipping_address_street = shipping_address_street;
-    	this.shipping_address_location = shipping_address_location;
-    	this.parcel_service = parcel_service;
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.shippingAddressName = shippingAddressName;
+    	this.shippingAddressStreet = shippingAddressStreet;
+    	this.shippingAddressLocation = shippingAddressLocation;
+    	this.parcelService = parcelService;
         this.status = status;
-        this.creation_date = new Timestamp(System.currentTimeMillis());
+        this.creationDate = new Timestamp(System.currentTimeMillis());
     }
 
     public String getOrderId() {
@@ -159,39 +158,73 @@ public class OrderMessage {
 		this.loyalityPoints = loyalityPoints;
 	}
 	
-	public String getParcel_service() {
-		return parcel_service;
-	}
-
-	public void setParcel_service(String parcel_service) {
-		this.parcel_service = parcel_service;
-	}
 	
-	public String getShipping_address_name() {
-		return shipping_address_name;
+
+    public List<Shampoo> getShampoos() {
+		return shampoos;
 	}
 
-	public void setShipping_address_name(String shipping_address_name) {
-		this.shipping_address_name = shipping_address_name;
+	public void setShampoos(List<Shampoo> shampoos) {
+		this.shampoos = shampoos;
 	}
 
-	public String getShipping_address_street() {
-		return shipping_address_street;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setShipping_address_street(String shipping_address_street) {
-		this.shipping_address_street = shipping_address_street;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getShipping_address_location() {
-		return shipping_address_location;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setShipping_address_location(String shipping_address_location) {
-		this.shipping_address_location = shipping_address_location;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-    @Override
+	public String getShippingAddressName() {
+		return shippingAddressName;
+	}
+
+	public void setShippingAddressName(String shippingAddressName) {
+		this.shippingAddressName = shippingAddressName;
+	}
+
+	public String getShippingAddressStreet() {
+		return shippingAddressStreet;
+	}
+
+	public void setShippingAddressStreet(String shippingAddressStreet) {
+		this.shippingAddressStreet = shippingAddressStreet;
+	}
+
+	public String getShippingAddressLocation() {
+		return shippingAddressLocation;
+	}
+
+	public void setShippingAddressLocation(String shippingAddressLocation) {
+		this.shippingAddressLocation = shippingAddressLocation;
+	}
+
+	public String getParcelService() {
+		return parcelService;
+	}
+
+	public void setParcelService(String parcelService) {
+		this.parcelService = parcelService;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	@Override
     public String toString() {
         return "OrderMessage{" +
                 "orderId='" + orderId + '\'' +
@@ -203,12 +236,12 @@ public class OrderMessage {
                 ", trackingId='" + trackingId + '\'' +
                 ", packingSlipId='" + packingSlipId + '\'' +
                 ", status='" + status + '\'' +
-                ", first_name=" + first_name +
-                ", last_name=" + last_name +
-                ", shipping_address_name='" + shipping_address_name + '\'' +
-                ", shipping_address_street='" + shipping_address_street + '\'' +
-                ", shipping_address_location='" + shipping_address_location + '\'' +
-                ", parcel_service='" + parcel_service + '\'' +
+                ", first_name=" + firstName +
+                ", last_name=" + lastName +
+                ", shipping_address_name='" + shippingAddressName + '\'' +
+                ", shipping_address_street='" + shippingAddressStreet + '\'' +
+                ", shipping_address_location='" + shippingAddressLocation + '\'' +
+                ", parcel_service='" + parcelService + '\'' +
                 '}';
     }
 

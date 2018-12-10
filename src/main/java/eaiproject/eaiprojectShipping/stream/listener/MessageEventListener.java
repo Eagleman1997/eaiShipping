@@ -52,14 +52,14 @@ public class MessageEventListener {
         OrderMessage orderMessage = eventMessage.getPayload();
         logger.info("Payload received: "+ orderMessage.toString());
         Shipping shipping = shippingService.shipGoods(
-        		Integer.parseInt(UUID.randomUUID().toString()),  // trackId -> new in this Service
+        		new Integer(34545),  // trackId -> new in this Service
         		Integer.parseInt(orderMessage.getOrderId()),  // orderId -> given from eaieShop
         		Integer.parseInt(orderMessage.getCustomerId()),  // customerId -> given from eaieShop
         		Integer.parseInt(orderMessage.getPackingSlipId()), //packingSlipId -> given from eaiInvetory
-        		orderMessage.getParcel_service(), // ParacelService -> given from eaieShop
-        		orderMessage.getShipping_address_name(), // ShippingAdress the Name from the customer -> given from eaieShop
-        		orderMessage.getShipping_address_street(), // ShippingAdress the Street from the customer -> given from eaieShop
-        		orderMessage.getShipping_address_location()); // ShippingAdress the PLZ and destination from the customer -> given from eaieShop
+        		orderMessage.getParcelService(), // ParacelService -> given from eaieShop
+        		orderMessage.getShippingAddressName(), // ShippingAdress the Name from the customer -> given from eaieShop
+        		orderMessage.getShippingAddressStreet(), // ShippingAdress the Street from the customer -> given from eaieShop
+        		orderMessage.getShippingAddressLocation()); // ShippingAdress the PLZ and destination from the customer -> given from eaieShop
         orderMessage.setTrackingId(shipping.getTrackingId().toString());
         orderMessage.setStatus("GoodsShipped");
         logger.info(orderMessage.toString());
